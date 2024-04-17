@@ -5,21 +5,35 @@ import java.util.concurrent.TimeUnit;
 
 public class CTC {
 
+	/**
+	 * Some Abbreviations used:
+	 * 		BFM -> Brute Force Method
+	 * 		PM --> Parallel Method
+	 * 		OCM -> Optimized Column Method
+	 * @param args
+	 */
 	public static void main(String[] args) {
-		/*
-		 * printArr(BF_generateGrid(5233));
-		 * System.out.println("SINGLE ROW EXTRACTION");
-		 * printArr(BF_extractRow(5233, BF_generateGrid(5233)));
-		 * System.out.println("ROW 5233 column 6: " + BF_extractElement(5233, 6,
-		 * BF_generateGrid(5250)));
-		 */
-		/* 
 		int[] startingNumbers = { 0, 1, 4, 5, 8, 9 };
-		printArr(Parallel_generateGrid(5233, startingNumbers));
-		System.out.println("Done");
-		*/
+		int row = 5233;
+		int col = 6;
+		StopwatchCPU sw;
 
-		System.out.println("Value at row 5233 starting with 9: "+ valueAt_row(5233, 9, true));
+		/*BRUTE FORCE TESTING for SMSPortal Code. TODO: Separate testing for these */
+		int [][] BF_grid = BF_generateGrid(row);
+		sw = new StopwatchCPU();
+		System.out.println ("Code found via BFM: "+ extractElement(row, col, BF_grid));
+		System.out.println("Time Taken: "+ sw.elapsedTime());
+
+		/*PARALLEL FIND TESTING */
+		int [][] Parallel_grid = Parallel_generateGrid(row, startingNumbers);
+		sw = new StopwatchCPU();
+		System.out.println ("Code found via PM: "+ extractElement(row, col, Parallel_grid));
+		System.out.println("Time Taken: "+ sw.elapsedTime());
+
+		/*OPTIMIZED COLUMN TESTING */
+		sw = new StopwatchCPU();
+		System.out.println("Code found via OCM: "+ valueAt_row(row, startingNumbers[col-1], true));
+		System.out.println("Time Taken: "+ sw.elapsedTime());
 	}
 
 	/*******************************************************************
@@ -176,10 +190,7 @@ public class CTC {
 		return out;
 	}
 
-	public static int BF_extractElement(int rowNr, int colNr, int[][] grid) {
-		int[] row = BF_extractRow(rowNr, grid);
-		return row[colNr - 1];
-	}
+
 
 	/*******************************************************************
 	 * General Matrix/2D array methods
@@ -210,6 +221,11 @@ public class CTC {
 			System.out.print(array[c] + "\t|");
 		}
 		System.out.println();
+	}
+
+	public static int extractElement(int rowNr, int colNr, int[][] grid) {
+		int[] row = BF_extractRow(rowNr, grid);
+		return row[colNr - 1];
 	}
 
 }
