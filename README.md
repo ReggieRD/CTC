@@ -1,12 +1,15 @@
 ## Crack The Code
-Problem solving solution for internship application.
-Solution is flexible enough to determine the value of any cell in the grid specified by the pattern provided in specification.
+Problem-solving solution for internship application.
+The solution is flexible enough to determine the value of any cell in the grid specified by the pattern provided in the specification.
 
-#Compilation
+Compilation
+===========
 javac CTC.java
 
-#Execution
+Execution
+===========
 java CTC
 
-#Environment Used
+Environment Used
+===========
 Written and tested on Ubuntu OS with Java JDK-21 installed but should work well for JDK-14 and newer perhaps some older versions too
